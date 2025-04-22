@@ -7,7 +7,7 @@
 %    This file is part of the Bass Transmission Index (BTI) Toolbox by
 %	   Lara Harris and Bjørn Kolbrek
 %
-%    Copyright (C) 2015-2025 by Lara Harris and Bjørn Kolbrek
+%    Copyright (C) 2025 by Lara Harris and Bjørn Kolbrek
 %
 %    The BTI Toolbox is free software: you can redistribute it and/or modify
 %    it under the terms of the GNU Lesser General Public License as published by 
@@ -31,7 +31,7 @@ classdef ModulationTransferFunctionCalculator < handle
 	properties (GetAccess = public, SetAccess = protected)
 		noiseMaxAmplitude = 1;
 		numNoiseIterations = 100;
-		useDefaultRgn = true; 
+		useDefaultRgn = true;
 		% useDefaultRgn = true will create a matrix of normalised columns, each column individually normalised.
 		% This will make sure we get the same random distribution every time.
 		modulationFreqs
@@ -255,8 +255,8 @@ classdef ModulationTransferFunctionCalculator < handle
 				%-Apply phase shift
 				frf = frf.*pf;
 			end
-      if isOctave()
-        self.systemImpulseResponse = ifft(frf, self.inputFFTsize);
+			if isOctave()
+				self.systemImpulseResponse = ifft(frf, self.inputFFTsize);
 			else
 				self.systemImpulseResponse = ifft(frf, self.inputFFTsize, 'symmetric');
 			end
@@ -267,7 +267,7 @@ classdef ModulationTransferFunctionCalculator < handle
 			if self.useDownsampling
 				self.downsampleIR();
 			end
-      self.preconditionIR();
+			self.preconditionIR();
 
 			self.lowestModFreq = min(self.modulationFreqs);
 			samplesInOnePeriodOfMinModFreq = (1/self.lowestModFreq) * self.samplingFreq;
@@ -313,7 +313,7 @@ classdef ModulationTransferFunctionCalculator < handle
 
 						testSignal = self.amplitudeModulate(bandlimitedNoise, self.modulationFreqs(mfCounter));
 
-						outputSignal = self.simulatePlayback(testSignal, systemSpectrum, lengthIR, convFftSize);
+						outputSignal = self.simulatePlayback(testSignal, systemSpectrum, convFftSize);
 
 						%-Assign outputs---------------------------------------------------
 						absOutput =  abs(outputSignal); % OUTPUT SIGNAL- abs
@@ -365,7 +365,7 @@ classdef ModulationTransferFunctionCalculator < handle
 
 						testSignal = self.amplitudeModulate(bandlimitedNoise, self.modulationFreqs(mfCounter));
 
-						outputSignal = self.simulatePlayback(testSignal, systemSpectrum, lengthIR, convFftSize);
+						outputSignal = self.simulatePlayback(testSignal, systemSpectrum, convFftSize);
 
 						%-Assign outputs---------------------------------------------------
 						absOutput =  abs(outputSignal); % OUTPUT SIGNAL- abs
@@ -509,25 +509,22 @@ classdef ModulationTransferFunctionCalculator < handle
 
 		function modulatedSignal = amplitudeModulate(self, signal, modulationFreq)
 			% Create mod function-----------------------------------------
-			% < I don't fully understand this comment below! but i think the
-			% noise freq resolution must be finer than lowest mod freq.>
-			%NOTE This gives big dc offset so can't resolve v low mfs ... need
-			%twice nocyc to discriminate 0.5Hz...
+			% < NOTE noise freq resolution must be at least twice the lowest mod freq. to discriminate?>
 			modulatingFunction = 0.5 .* (1 + cos((2*pi*modulationFreq)*self.tVector(1:length(signal))));
-			%Mod func from BSI & Keith Holland
+
 			modulatedSignal = modulatingFunction(:) .* signal;
 		end  % EO function modulatenoise
 
-		function [outputTrimmed] = simulatePlayback(self, signal, systemSpectrum, N_IR, nfft)
+		function [outputTrimmed] = simulatePlayback(self, signal, systemSpectrum, nfft)
 			% simulate passing test signal (noise, bandlimited then modulated) through the loudspeaker:
 			% convolve in time domain or multiply in frequency domain.
 
 			N_test = length(signal);
-			signalSpectrum = fft(signal(:), nfft);  %Modulated BL noise
+			signalSpectrum = fft(signal(:), nfft);  % Modulated BL noise
 
 			outputSpectrum = signalSpectrum .* systemSpectrum; % Modulated noise x BL IR shifted
 
-			%Back to Time domain
+			% Back to Time domain
 			if isOctave()
 				outputSignal = ifft(outputSpectrum);
 			else
