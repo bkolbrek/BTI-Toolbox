@@ -10,16 +10,16 @@ function [hFigBti, roundedMatrix] = plotbti(BTI, figno)
 % The function is originally written in Matlab, and the exact looks have been
 % a bit difficult to replicate in Octave, but feel free play around with it.
 %
-%--------------------------------------------------------------------------
-% Lara Harris   laraharris1995@gmail.com
+% --------------------------------------------------------------------------
+%
 % Created 24-12-17; Updated 11-07-2019
 % Modified to handle Octave by BK 04-03-2025
 %
-%  --------------------------------------------------- -------------------------------------------
+% --------------------------------------------------- ---------------------
 %    This file is part of the Bass Transmission Index (BTI) Toolbox by
 %	   Lara Harris and Bjørn Kolbrek
 %
-%    Copyright (C) 2015-2025 by Lara Harris and Bjørn Kolbrek
+%    Copyright (C) 2025 by Lara Harris and Bjørn Kolbrek
 %
 %    The BTI Toolbox is free software: you can redistribute it and/or modify
 %    it under the terms of the GNU Lesser General Public License as published by 
@@ -31,7 +31,7 @@ function [hFigBti, roundedMatrix] = plotbti(BTI, figno)
 %
 %    You should have received a copy of the GNU Lesser General Public License along with the
 %    BTI Toolbox. If not, see <http://www.gnu.org/licenses/>.
-%  --------------------------------------------------- -------------------------------------------
+%  --------------------------------------------------- --------------------
 %
 
 

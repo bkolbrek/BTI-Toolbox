@@ -6,16 +6,16 @@
 % 	Different number of noise iterations
 % 	Constant number of modulation periods
 % 	Downsampling (requires signal processing toolbox)
-% 	Butterworth bandpass filtering of noise (requires signal processing toolbox)
+% 	Butterworth bandpass filtering of noise (requires DSP System toolbox)
 %
 % There will be some differences in the results, but usually not anything
-% major. Please consult the Lara Harris' PhD thesis chapter 2.
+% major. Please consult Lara Harris' PhD thesis chapter 2.
 %
 %  --------------------------------------------------- -------------------------------------------
 %    This file is part of the Bass Transmission Index (BTI) Toolbox by
 %	   Lara Harris and Bjørn Kolbrek
 %
-%    Copyright (C) 2015-2025 by Lara Harris and Bjørn Kolbrek
+%    Copyright (C) 2025 by Lara Harris and Bjørn Kolbrek
 %
 %    The BTI Toolbox is free software: you can redistribute it and/or modify
 %    it under the terms of the GNU Lesser General Public License as published by 
@@ -34,7 +34,7 @@
 clear;
 close all;
 dataFolder = '.\IRs\';
-irfile = 'spen.wav';
+irfile = 'yam.wav';
 
 % Load impulse response
 [IR, fs] = audioread([dataFolder, irfile]);

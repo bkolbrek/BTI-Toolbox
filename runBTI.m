@@ -10,7 +10,7 @@
 %    This file is part of the Bass Transmission Index (BTI) Toolbox by
 %	   Lara Harris and Bjørn Kolbrek
 %
-%    Copyright (C) 2015-2025 by Lara Harris and Bjørn Kolbrek
+%    Copyright (C) 2025 by Lara Harris and Bjørn Kolbrek
 %
 %    The BTI Toolbox is free software: you can redistribute it and/or modify
 %    it under the terms of the GNU Lesser General Public License as published by 
