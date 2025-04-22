@@ -104,5 +104,5 @@ Thanks to Keith Holland for contributing the demo IR files.
 
 Cite as: 
 
-L. Harris and B. Kolbrek, 2025, "The BTI Toolbox"
+L. Harris and B. Kolbrek, 2025, "The BTI Toolbox" (Accessed <date of access>)
 
